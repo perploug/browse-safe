@@ -12,7 +12,10 @@ The initial proof of concept is based on [Glow Rope](https://palebluepixel.org/2
 
 ### Iteration #1
 
-[-] Canvas used instead of WebGL
-[-] Plot points and draw a circle around them
-[ ] When point moves from A to B, it follows the semi-circle
-[ ] Animate the travelling path
+ - Canvas used instead of WebGL
+ - Draw a dynamic grid on canvas
+ - Plot points and draw a circle around them
+ - When point moves from A to B, it follows the semi-circle (**to-do**)
+ - Animate the travelling path (**to-do**)
+
+ ![screenshot](/docs/images/grid.jpg)
