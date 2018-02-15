@@ -27,4 +27,17 @@
   Viz.point(p1);
   Viz.point(p2);
   Viz.arc(p1, p2);
+
+  const p11 = {
+    x: 270,
+    y: 155
+  };
+  const p22 = {
+    x: 121,
+    y: 30
+  };
+
+  Viz.point(p11);
+  Viz.point(p22);
+  Viz.arc(p11, p22);
 })();
