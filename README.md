@@ -18,4 +18,4 @@ The initial proof of concept is based on [Glow Rope](https://palebluepixel.org/2
  - When point moves from A to B, it follows the semi-circle (**to-do**)
  - Animate the travelling path (**to-do**)
 
- ![screenshot](/docs/images/grid.jpg)
+ ![screenshot](/docs/grid.png)
