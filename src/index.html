@@ -1,15 +1,66 @@
 <!doctype html>
 <html>
   <head>
-  	<title>The safe browsing project</title>
-    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
   </head>
+  <body>
+    <div class="container">
+      <canvas id="traffic"></canvas>
+      <div id="4" class="internet-traffic-source"></div>
+      <div class="coord-display"></div>
+    </div>
+    <script type="x-shader/x-vertex" id="vertexshader">
+      // increase FLASHPOINT to make the flash happen later
+      #define FLASHPOINT 10.0
+      #define FLASHPOINT_STRENGTH 1.5
+      #define PI 3.14159
+      uniform float TIMER_MAX;
+      uniform float size;
 
-  <body id="body">
-    <canvas class="canvas" id="canvas" width="800px"" height="600px"></canvas>
-    <script src="js/grid.js" type="text/javascript"></script>
-    <script src="js/viz.js" type="text/javascript"></script>
-    <script src="js/util.js" type="text/javascript"></script>
-    <script src="js/index.js" type="text/javascript"></script>
+      attribute float alive;
+      attribute vec3  endPosition;
+      attribute vec3  startColor;
+      attribute vec3  endColor;
+      attribute float timer;
+
+      varying float vAlive;
+      varying float vProgress;
+      varying float vFlashPoint;
+      varying vec3  vMixColor;
+
+      varying float vBurst;
+
+      void main() {
+        vAlive      = alive;
+        vProgress   = 1.0 - timer / TIMER_MAX;
+        vMixColor   = mix( startColor, endColor, vProgress );
+        vFlashPoint = max( 0.0, (1.0 + FLASHPOINT) * vProgress - FLASHPOINT ); // https://www.desmos.com/calculator/nymymapyel
+        vec3 newPosition = mix( position, endPosition, vProgress );
+        float yDist = abs(endPosition.y - position.y);
+        newPosition.x += yDist / 2.0 * sin( PI * vProgress );
+        vec4 mvPosition = modelViewMatrix * vec4( newPosition, 1.0 );
+        gl_PointSize = size * (1.0 + vFlashPoint * FLASHPOINT_STRENGTH);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+      uniform sampler2D texture;
+
+      varying float vAlive;
+      varying float vProgress;
+      varying float vFlashPoint;
+      varying vec3  vMixColor;
+
+      void main() {
+          if ( vAlive == 0.0 ) discard;
+          gl_FragColor = vec4( vMixColor, 1.0 - vFlashPoint*vFlashPoint ) * texture2D( texture, gl_PointCoord );;
+      }
+    </script>
+    <script src="../node_modules/three/build/three.js"></script>
+    <!--<script src="./js/lib/three.min.js"></script>-->
+    <script src="../node_modules/three/examples/js/libs/stats.min.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>

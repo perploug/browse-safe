@@ -1,0 +1,29 @@
+{
+  "name": "browse-safe",
+  "version": "1.0.0",
+  "description": "safe browsing on the modern web",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/princiya/browse-safe.git"
+  },
+  "keywords": [
+    "privacy"
+  ],
+  "author": "Princiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/princiya/browse-safe/issues"
+  },
+  "homepage": "https://github.com/princiya/browse-safe#readme",
+  "devDependencies": {
+    "shader-particle-engine": "^1.0.6",
+    "three": "^0.90.0"
+  }
+}

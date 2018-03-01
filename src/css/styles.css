@@ -1,0 +1,43 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to right, #002235 70%, transparent), linear-gradient(#002235 18px, transparent 18px) 0 -2px, linear-gradient(90deg, #002235 18px, transparent 0px) -2px 0;
+  background-color: #003947;
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+  color: #7cdbf3;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  width: 60%;
+}
+
+#traffic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.coord-display {
+  position: absolute;
+  bottom: 0;
+  left: 48%;
+  font-family: monospace;
+}
+
+.internet-traffic-source {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+}
